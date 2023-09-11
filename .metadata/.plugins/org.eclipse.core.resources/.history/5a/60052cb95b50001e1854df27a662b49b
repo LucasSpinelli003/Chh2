@@ -1,0 +1,17 @@
+package br.com.fiap.solutech.view;
+
+import br.com.fiap.solutech.model.Chamado;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		
+		
+		
+		Chamado c = new Chamado();
+		
+		
+		
+	}
+
+}

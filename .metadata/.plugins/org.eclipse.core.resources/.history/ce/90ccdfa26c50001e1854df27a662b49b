@@ -1,0 +1,19 @@
+package br.com.fiap.solutech.model;
+import br.com.fiap.solutech.model.*;
+
+public class Modal {
+	public int escolheModal(Veiculo veiculo){
+        System.out.println("Calculando o melhor modal:.....\n");
+        double pesoCalcula = veiculo.calculaPeso();
+        if (pesoCalcula<=50){
+        	return 1;            
+        }else if(pesoCalcula<=100){
+            return 2;
+        }else if(pesoCalcula<=200){
+            return 3;
+        }else{
+            return 4;
+        }
+    }
+	
+}

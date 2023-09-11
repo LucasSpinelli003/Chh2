@@ -1,0 +1,27 @@
+package br.com.fiap.solutech.view;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.solutech.model.*;
+
+
+public class Main {
+	public static void main(String[] args) {
+		
+		String registroUsuario = JOptionPane.showInputDialog("Digite o seu usuario para ser cadastrado.");
+	    String registroSenha = JOptionPane.showInputDialog("Digite o seu senha para ser cadastrado.");
+		
+		Login l = new Login(registroUsuario,registroSenha);
+		
+        l.verificaLogin();
+        String nomeCompleto = JOptionPane.showInputDialog("Digite o seu nome completo: ");
+        String dataDeNascimento = JOptionPane.showInputDialog("Digite a sua data de nascimento: ");
+        String rg = JOptionPane.showInputDialog("Digite o seu rg: ");
+        String cpf = JOptionPane.showInputDialog("Digite o seu cpf: ");
+		Chamado c = new Chamado();
+		
+		
+		
+	}
+
+}

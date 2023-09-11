@@ -1,0 +1,61 @@
+package br.com.fiap.solutech.view;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.solutech.model.*;
+
+
+public class Main {
+	public static void main(String[] args) {
+		
+		//Login
+		String registroUsuario = JOptionPane.showInputDialog("Digite o seu usuario para ser cadastrado.");
+	    String registroSenha = JOptionPane.showInputDialog("Digite o seu senha para ser cadastrado.");
+		Login l = new Login(registroUsuario,registroSenha);
+		
+		//Chamado
+		 boolean check = l.verificaLogin();
+		if(check) {
+			 String nomeCompleto = JOptionPane.showInputDialog("Digite o seu nome completo: ");
+		        String dataDeNascimento = JOptionPane.showInputDialog("Digite a sua data de nascimento: ");
+		        String rg = JOptionPane.showInputDialog("Digite o seu rg: ");
+		        String cpf = JOptionPane.showInputDialog("Digite o seu cpf: ");
+		       
+		        //Endereço
+		        String rua = JOptionPane.showInputDialog("Digite o nome da rua onde você mora: ");
+		        int numero = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da sua rua: "));
+		        String complemento = JOptionPane.showInputDialog("Complemento: ");
+		        String cep = JOptionPane.showInputDialog("Digite o cep: ");
+				Endereco e = new Endereco(rua,numero,complemento,cep);
+				String descricaoDoProblema = JOptionPane.showInputDialog("Digite a descrição do problema: ");
+				
+				//Veiculo
+				String modelo = JOptionPane.showInputDialog(null,"Digite o modelo do veiculo: ");
+				String tpCarroceria = JOptionPane.showInputDialog(null,"Digite o tipo da carroceria: ");
+				String mudancaNoVeiculo = JOptionPane.showInputDialog(null,"Houve alguma mudança no veículo? se sim qual?: ");
+		        double peso = Double.parseDouble(JOptionPane.showInputDialog("Digite o peso do veículo: "+"(Peso em toneladas)"));
+		        double comprimento = Double.parseDouble(JOptionPane.showInputDialog("Digite o comprimento do veículo: " + "(em metros)"));
+		        double altura = Double.parseDouble(JOptionPane.showInputDialog("Digite a altura do veículo: " + "(em metros)"));
+		        double largura = Double.parseDouble(JOptionPane.showInputDialog("Digite a largura do veículo: " + "(em metros)"));
+		        double pesoCarga = Double.parseDouble(JOptionPane.showInputDialog("Digite o peso da carga do veículo: "+"(Peso em toneladas)"));
+		        int eixos = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero de eixos do veículo: "));
+		        Veiculo v = new Veiculo(modelo,tpCarroceria,mudancaNoVeiculo,peso,comprimento,altura,largura,pesoCarga,eixos);
+				
+		        //Contato
+				String telefone = JOptionPane.showInputDialog("Digite o seu telefone: ");
+			    String email = JOptionPane.showInputDialog("Digite o seu email: ");
+				Contato ctt = new Contato(telefone,email);
+				
+				//LocalChamado
+				String enderecoChamado = JOptionPane.showInputDialog("Digite o endereço onde você está, para irmos até você: ");
+		        String pontoDeReferencia = JOptionPane.showInputDialog("Ponto de referência");
+		        LocalChamado lc = new LocalChamado(enderecoChamado,pontoDeReferencia);
+				Chamado c = new Chamado(nomeCompleto,dataDeNascimento,rg,cpf,descricaoDoProblema,ctt,v,e,l,lc);	
+		}else {
+			JOptionPane.showMessageDialog(null,"Acesso Negado!!");
+		}
+       
+		
+	}
+
+}

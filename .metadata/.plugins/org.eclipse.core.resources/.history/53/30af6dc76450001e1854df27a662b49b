@@ -1,0 +1,5 @@
+package br.com.fiap.solutech.exception;
+
+public class ValorInvalido {
+
+}
