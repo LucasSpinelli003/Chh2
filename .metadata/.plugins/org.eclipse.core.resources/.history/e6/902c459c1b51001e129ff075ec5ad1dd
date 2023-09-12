@@ -1,0 +1,126 @@
+package br.com.fiap.solutech.view;
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.solutech.exception.ValorInvalido;
+import br.com.fiap.solutech.model.*;
+
+
+public class Main {
+	public static void main(String[] args){
+		
+		Scanner leitor = new Scanner(System.in);
+		
+		ArrayList<Chamado> array = new ArrayList<Chamado>();
+		int n = 0;
+			try {
+				//Login
+				String registroUsuario = JOptionPane.showInputDialog("Digite o seu usuario para ser cadastrado.");
+				String registroSenha = JOptionPane.showInputDialog("Digite o seu senha para ser cadastrado.");
+				Login l = new Login(registroUsuario,registroSenha);
+				boolean check = l.verificaLogin();
+				while(n == 0) {
+					
+					//Chamado
+					if(check) {
+						 	String nomeCompleto = JOptionPane.showInputDialog("Digite o seu nome completo: ");
+					        String dataDeNascimento = JOptionPane.showInputDialog("Digite a sua data de nascimento: ");
+					        String rg = JOptionPane.showInputDialog("Digite o seu rg: ");
+					        String cpf = JOptionPane.showInputDialog("Digite o seu cpf: ");
+					       
+					        //Endereço
+					        String rua = JOptionPane.showInputDialog("Digite o nome da rua onde você mora: ");
+					        int numero = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da sua rua: "));
+					        String complemento = JOptionPane.showInputDialog("Complemento: ");
+					        String cep = JOptionPane.showInputDialog("Digite o cep: ");
+							Endereco e = new Endereco(rua,numero,complemento,cep);
+							String descricaoDoProblema = JOptionPane.showInputDialog("Digite a descrição do problema: ");
+							
+							//Veiculo
+							String modelo = JOptionPane.showInputDialog(null,"Digite o modelo do veiculo: ");
+							String tpCarroceria = JOptionPane.showInputDialog(null,"Digite o tipo da carroceria: ");
+							String mudancaNoVeiculo = JOptionPane.showInputDialog(null,"Houve alguma mudança no veículo? se sim qual?: ");
+					        double peso = Double.parseDouble(JOptionPane.showInputDialog("Digite o peso do veículo: " + "(Peso em toneladas)"));
+					        double comprimento = Double.parseDouble(JOptionPane.showInputDialog("Digite o comprimento do veículo: " + "(em metros)"));
+					        double altura = Double.parseDouble(JOptionPane.showInputDialog("Digite a altura do veículo: " + "(em metros)"));
+					        double largura = Double.parseDouble(JOptionPane.showInputDialog("Digite a largura do veículo: " + "(em metros)"));
+					        double pesoCarga = Double.parseDouble(JOptionPane.showInputDialog("Digite o peso da carga do veículo: "+"(Peso em toneladas)"));
+					        int eixos = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero de eixos do veículo: "));
+					        Veiculo v = new Veiculo(modelo,tpCarroceria,mudancaNoVeiculo,peso,comprimento,altura,largura,pesoCarga,eixos);
+					        //Contato
+							String telefone = JOptionPane.showInputDialog("Digite o seu telefone: ");
+						    String email = JOptionPane.showInputDialog("Digite o seu email: ");
+							Contato ctt = new Contato(telefone,email);
+							
+							//LocalChamado
+							String enderecoChamado = JOptionPane.showInputDialog("Digite o endereço onde você está, para irmos até você: ");
+					        String pontoDeReferencia = JOptionPane.showInputDialog("Ponto de referência");
+					        LocalChamado lc = new LocalChamado(enderecoChamado,pontoDeReferencia);				
+							//Modal
+					        String melhorModal = "";
+							Modal m = new Modal(melhorModal);
+					        
+					        int escolheModal = m.escolheModal(v);
+					        String modalCorreto = " ";
+					        if(escolheModal == 1) {
+					        	modalCorreto = "Guincho pesado com quinta roda e bandeja.";
+							}else if(escolheModal == 2) {
+								modalCorreto = "Guincho pesado com plaraforma hidraulica MUNCK.";
+							}else if(escolheModal == 3) {	
+								modalCorreto = "Guincho pesado com torre e lanca.";
+							}else if(escolheModal == 4) {
+								modalCorreto = "Guincho pesado nao padrao.";
+							}
+					        Modal mc = new Modal(modalCorreto);
+					        Chamado c = new Chamado(nomeCompleto,dataDeNascimento,rg,cpf,descricaoDoProblema,ctt,v,e,l,lc,mc);
+					        array.add(c);
+					        
+					        for (Chamado chamado : array) {
+								System.out.println("\n Exibindo chamados disponiveis: \n");
+						        System.out.println("Usuario..................: " + chamado.getLogin().getRegistroUsuario());
+						        System.out.println("Nome completo............: " + chamado.getNomeCompleto());
+						        System.out.println("Data de Nascimento.......: " + chamado.getDataDeNascimento());
+						        System.out.println("rg:......................: " + chamado.getRg());
+						        System.out.println("cpf......................: " + chamado.getCpf());
+						        System.out.println("Descricao do problema....: " + chamado.getDescricaoDoProblema() );
+						        System.out.println("Modelo do veiculo........: " + chamado.getVeiculo().getModelo());
+						        System.out.println("Tipo da carroceria.......: " + chamado.getVeiculo().getTpCarroceria());
+						        System.out.println("Mudança no veiculo.......: " + chamado.getVeiculo().getMudancaNoVeiculo());
+						        System.out.println("Peso.....................: " + chamado.getVeiculo().getPeso());
+						        System.out.println("Comprimento do veiculo...: " + chamado.getVeiculo().getComprimento());
+						        System.out.println("Altura do veiculo........: " + chamado.getVeiculo().getAltura());
+						        System.out.println("Largura do veiculo.......: " + chamado.getVeiculo().getLargura());
+						        System.out.println("Peso da carga do veiculo.: " + chamado.getVeiculo().getPesoCarga());
+						        System.out.println("Eixos....................: " + chamado.getVeiculo().getEixos());
+						        System.out.println("Nome da rua..............: " + chamado.getEndereco().getRua());
+						        System.out.println("Numero...................: " + chamado.getEndereco().getNumero());
+						        System.out.println("Complemento..............: " + chamado.getEndereco().getComplemento());
+						        System.out.println("Cep......................: " + chamado.getEndereco().getCep());
+						        System.out.println("Telefone.................: " + chamado.getContato().getTelefone());
+						        System.out.println("Email....................: " + chamado.getContato().getEmail());
+						        System.out.println("Endereco chamado.........: " + chamado.getLocalChamado().getEndereco());
+						        System.out.println("Ponto de referencia......: " + chamado.getLocalChamado().getPontoDeReferencia());
+						        
+						        System.out.println("\n Calculando o melhor modal:.....\n");
+						        
+						        System.out.println("Melhor modal para o chamado: " + chamado.getModal().getMelhorModal());
+							}
+							System.out.println("Digite 0 para fazer outro chamado, ou qualquer outro número para sair. ");
+							n = leitor.nextInt();	
+							}else {
+							 n = 1;
+							}1
+					}
+				}catch(ValorInvalido e) {
+				System.err.println(e.getMessage());
+				}catch(NumberFormatException e) {
+					System.err.println("É preciso inserir um número neste campo!");
+				}catch(InputMismatchException e) {
+					System.err.println("Dado inserido incorretamente!");
+				}
+	}
+}

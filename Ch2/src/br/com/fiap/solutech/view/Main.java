@@ -18,14 +18,14 @@ public class Main {
 		ArrayList<Chamado> array = new ArrayList<Chamado>();
 		int n = 0;
 			try {
+				//Login
+				String registroUsuario = JOptionPane.showInputDialog("Digite o seu usuario para ser cadastrado.");
+				String registroSenha = JOptionPane.showInputDialog("Digite o seu senha para ser cadastrado.");
+				Login l = new Login(registroUsuario,registroSenha);
+				boolean check = l.verificaLogin();
 				while(n == 0) {
-					//Login
-					String registroUsuario = JOptionPane.showInputDialog("Digite o seu usuario para ser cadastrado.");
-				    String registroSenha = JOptionPane.showInputDialog("Digite o seu senha para ser cadastrado.");
-					Login l = new Login(registroUsuario,registroSenha);
 					
 					//Chamado
-					boolean check = l.verificaLogin();
 					if(check) {
 						 	String nomeCompleto = JOptionPane.showInputDialog("Digite o seu nome completo: ");
 					        String dataDeNascimento = JOptionPane.showInputDialog("Digite a sua data de nascimento: ");
@@ -112,7 +112,7 @@ public class Main {
 							System.out.println("Digite 0 para fazer outro chamado, ou qualquer outro número para sair. ");
 							n = leitor.nextInt();	
 							}else {
-								
+							 n = 1;
 							}
 					}
 				}catch(ValorInvalido e) {

@@ -1,0 +1,8 @@
+package br.com.fiap.solutech.exception;
+
+public class ValorInvalido extends IllegalArgumentException {
+
+		public ValorInvalido(String mensagem) {
+			super(mensagem);
+		}
+}

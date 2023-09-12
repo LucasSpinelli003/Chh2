@@ -1,5 +1,7 @@
 package br.com.fiap.solutech.model;
 
+import br.com.fiap.solutech.exception.ValorInvalido;
+
 public class Chamado {
     private String nomeCompleto ;
     private String dataDeNascimento ;
@@ -16,11 +18,17 @@ public class Chamado {
 
     public Chamado( String nomeCompleto, String dataDeNascimento, String rg, String cpf,
     		String descricaoDoProblema, Contato contato, 
-    		Veiculo veiculo, Endereco endereco, Login login,LocalChamado localChamado, Modal modal) {
+    		Veiculo veiculo, Endereco endereco, Login login,LocalChamado localChamado, Modal modal) throws ValorInvalido{
         this.nomeCompleto = nomeCompleto;
         this.dataDeNascimento = dataDeNascimento;
         this.rg = rg;
+        if(rg.length()>12) {
+        	throw new ValorInvalido("O rg deve ter no maximo 12 caracteres");
+        }
         this.cpf = cpf;
+        if(cpf.length()>14) {
+        	throw new ValorInvalido("O cpf deve ter no maximo 14 caracteres");
+        }
         this.descricaoDoProblema = descricaoDoProblema;
         this.contato = contato;
         this.veiculo = veiculo;

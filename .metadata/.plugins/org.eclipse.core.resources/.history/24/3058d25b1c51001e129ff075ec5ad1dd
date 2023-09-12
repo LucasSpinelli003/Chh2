@@ -1,0 +1,8 @@
+package br.com.fiap.solutech.exception;
+
+public class ValorInvalido extends NumberFormatException {
+
+		public ValorInvalido(String mensagem) {
+			super(mensagem);
+		}
+}
